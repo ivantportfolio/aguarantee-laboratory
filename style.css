@@ -484,7 +484,7 @@ img {
     height: 300px;
     background-color
 
-    /* ===== LOGO WITH IMAGE + TEXT ===== */
+/* ===== FIXED LOGO: SMALL + CLEAN + NO BACKGROUND ===== */
 .logo {
     display: flex;
     align-items: center;
@@ -494,17 +494,21 @@ img {
     display: flex;
     align-items: center;
     text-decoration: none;
-    gap: 12px; /* space between logo and text */
+    gap: 10px; /* space between logo and text */
+    background: transparent !important; /* remove any background */
 }
 
 .logo-img {
-    height: 55px; /* adjust size to fit your header */
-    width: auto;
-    object-fit: contain;
+    height: 45px !important;  /* ✅ SMALL SIZE — adjust between 35px–50px */
+    width: auto !important;
+    max-width: 120px !important; /* prevent stretching */
+    object-fit: contain !important;
+    background: transparent !important; /* ✅ remove white/colored background */
+    mix-blend-mode: multiply; /* ✅ removes white background from logo PNG */
 }
 
 .logo-text h1 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
     color: #222;
     margin: 0;
@@ -512,21 +516,22 @@ img {
 }
 
 .logo-text p {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #555;
     margin: 0;
     line-height: 1;
 }
 
-/* Mobile adjustment */
+/* ✅ MOBILE VERSION — EVEN SMALLER */
 @media (max-width: 768px) {
     .logo-img {
-        height: 42px;
+        height: 38px !important;
+        max-width: 90px !important;
     }
     .logo-text h1 {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
     .logo-text p {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
     }
 }
