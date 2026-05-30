@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = htmlspecialchars(trim($_POST['message']));
 
     // Your email address where messages will be sent
-    $to = "info@aguarantee.ph"; 
+    $to = "ivantroybandico@gmail.com"; 
     $email_subject = "New Contact Form Submission: " . $subject;
 
     // Email body content
