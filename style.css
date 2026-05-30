@@ -484,7 +484,7 @@ img {
     height: 300px;
     background-color
 
-/* ===== FIXED LOGO: SMALL + CLEAN + NO BACKGROUND ===== */
+/* ===== LOGO: IMAGE + TEXT SIDE-BY-SIDE ===== */
 .logo {
     display: flex;
     align-items: center;
@@ -492,19 +492,29 @@ img {
 
 .logo-link {
     display: flex;
-    align-items: center;
+    align-items: center; /* ✅ Vertically centers logo and text */
+    flex-direction: row !important; /* ✅ FORCES SIDE-BY-SIDE — never vertical */
     text-decoration: none;
-    gap: 10px; /* space between logo and text */
-    background: transparent !important; /* remove any background */
+    gap: 10px; /* ✅ Space between logo and text — adjust if needed */
+    background: transparent !important;
 }
 
+/* ✅ LOGO IMAGE SIZE — ADJUSTED */
 .logo-img {
-    height: 35px !important;  /* ✅ SMALL SIZE — adjust between 35px–50px */
+    height: 42px !important;  /* ✅ PERFECT SIZE — change to 35px–50px if needed */
     width: auto !important;
-    max-width: 50px !important; /* prevent stretching */
+    max-width: 110px !important; /* Prevent too wide */
     object-fit: contain !important;
-    background: transparent !important; /* ✅ remove white/colored background */
-    mix-blend-mode: multiply; /* ✅ removes white background from logo PNG */
+    background: transparent !important;
+    mix-blend-mode: multiply; /* ✅ Removes white background automatically */
+    display: block !important;
+}
+
+/* ✅ COMPANY NAME STYLING */
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
 }
 
 .logo-text h1 {
@@ -512,20 +522,20 @@ img {
     font-weight: 700;
     color: #222;
     margin: 0;
-    line-height: 1.2;
+    white-space: nowrap; /* ✅ Keep name in one line */
 }
 
 .logo-text p {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: #555;
     margin: 0;
-    line-height: 1;
+    white-space: nowrap; /* ✅ Keep tagline in one line */
 }
 
-/* ✅ MOBILE VERSION — EVEN SMALLER */
+/* ✅ MOBILE: Still side-by-side, just smaller */
 @media (max-width: 768px) {
     .logo-img {
-        height: 38px !important;
+        height: 36px !important;
         max-width: 90px !important;
     }
     .logo-text h1 {
