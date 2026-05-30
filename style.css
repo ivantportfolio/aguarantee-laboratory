@@ -501,7 +501,7 @@ img {
 
 /* ✅ LOGO IMAGE SIZE — ADJUSTED */
 .logo-img {
-    height: 42px !important;  /* ✅ PERFECT SIZE — change to 35px–50px if needed */
+    height: 10px !important;  /* ✅ PERFECT SIZE — change to 35px–50px if needed */
     width: auto !important;
     max-width: 110px !important; /* Prevent too wide */
     object-fit: contain !important;
