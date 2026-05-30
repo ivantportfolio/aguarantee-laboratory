@@ -499,9 +499,9 @@ img {
 }
 
 .logo-img {
-    height: 45px !important;  /* ✅ SMALL SIZE — adjust between 35px–50px */
+    height: 35px !important;  /* ✅ SMALL SIZE — adjust between 35px–50px */
     width: auto !important;
-    max-width: 120px !important; /* prevent stretching */
+    max-width: 50px !important; /* prevent stretching */
     object-fit: contain !important;
     background: transparent !important; /* ✅ remove white/colored background */
     mix-blend-mode: multiply; /* ✅ removes white background from logo PNG */
