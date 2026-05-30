@@ -80,20 +80,7 @@
 
                 <div class="contact-form">
                     <h2>Send Us a Message</h2>
-                    <form action="send_email.php" method="POST">
-    
-                        <!-- Status Messages -->
-                        <?php
-                        if (isset($_GET['status'])) {
-                            if ($_GET['status'] == 'success') {
-                                echo "<p style='color:green; padding:10px; background:#e6ffea; border-radius:5px;'>✅ Message sent successfully! We will contact you soon.</p>";
-                            }
-                            if ($_GET['status'] == 'error') {
-                                echo "<p style='color:red; padding:10px; background:#ffe6e6; border-radius:5px;'>❌ Oops! Something went wrong. Please try again later.</p>";
-                            }
-                        }
-                        ?>
-                    
+                    <form action="send_email.php" method="POST">                   
                         <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" name="name" required placeholder="Your full name">
@@ -115,6 +102,17 @@
                             <textarea id="message" name="message" rows="5" required placeholder="Write your message or request here..."></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                         <!-- Status Messages -->
+                        <?php
+                        if (isset($_GET['status'])) {
+                            if ($_GET['status'] == 'success') {
+                                echo "<p style='color:green; padding:10px; background:#e6ffea; border-radius:5px;'>✅ Message sent successfully! We will contact you soon.</p>";
+                            }
+                            if ($_GET['status'] == 'error') {
+                                echo "<p style='color:red; padding:10px; background:#ffe6e6; border-radius:5px;'>❌ Oops! Something went wrong. Please try again later.</p>";
+                            }
+                        }
+                        ?>
                     </form>
                 </div>
             </div>
