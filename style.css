@@ -98,14 +98,6 @@ img {
     align-items: center;
 }
 
-.logo h1 {
-    font-size: 1.3rem;
-    color: #0077BE;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
 .nav-links {
     display: flex;
     gap: 2rem;
