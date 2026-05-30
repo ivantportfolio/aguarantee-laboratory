@@ -483,3 +483,50 @@ img {
 .map-placeholder {
     height: 300px;
     background-color
+
+    /* ===== LOGO WITH IMAGE + TEXT ===== */
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    gap: 12px; /* space between logo and text */
+}
+
+.logo-img {
+    height: 55px; /* adjust size to fit your header */
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-text h1 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #222;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.logo-text p {
+    font-size: 0.85rem;
+    color: #555;
+    margin: 0;
+    line-height: 1;
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+    .logo-img {
+        height: 42px;
+    }
+    .logo-text h1 {
+        font-size: 1rem;
+    }
+    .logo-text p {
+        font-size: 0.75rem;
+    }
+}
