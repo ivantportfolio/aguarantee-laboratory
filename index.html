@@ -7,54 +7,450 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== GLOBAL VARIABLES - BLUE + GREEN THEME ===== */
+        :root {
+            --primary-blue: #0077B6;
+            --light-blue: #00B4D8;
+            --dark-blue: #023E8A;
+            --green: #2A9D8F;
+            --light-green: #4CC9F0;
+            --pale-green: #E6F9F5;
+            --white: #ffffff;
+            --light-gray: #f8fbfd;
+            --gray: #64748b;
+            --dark-gray: #334155;
+            --shadow: 0 4px 15px rgba(0, 119, 182, 0.08);
+            --shadow-hover: 0 8px 20px rgba(42, 157, 143, 0.15);
+        }
+
+        /* ===== GLOBAL RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.6;
+            background-color: var(--light-gray);
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue), var(--green));
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 119, 182, 0.2);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0, 119, 182, 0.25);
+        }
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+            margin-left: 12px;
+        }
+        .btn-secondary:hover {
+            background: var(--pale-green);
+            color: var(--green);
+            border-color: var(--green);
+            transform: translateY(-3px);
+        }
+        .btn-light {
+            background: var(--white);
+            color: var(--green);
+            font-weight: 600;
+        }
+        .btn-light:hover {
+            background: var(--pale-green);
+            color: var(--primary-blue);
+        }
+        .w-100 { width: 100%; }
+        .text-center { text-align: center; }
+        .mt-4 { margin-top: 2rem; }
+        .mb-5 { margin-bottom: 3rem; }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            padding: 1rem 0;
+        }
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* ✅ LOGO: PERFECT SIDE-BY-SIDE LAYOUT */
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .logo-img {
+            height: 45px !important;
+            width: auto !important;
+            max-width: 110px !important;
+            object-fit: contain !important;
+            background: transparent !important;
+            mix-blend-mode: multiply !important;
+            display: block !important;
+        }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        .logo-text h1 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-blue), var(--green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+            white-space: nowrap;
+        }
+        .logo-text p {
+            font-size: 0.78rem;
+            color: var(--gray);
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+            color: var(--dark-gray);
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--green);
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary-blue), var(--green));
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue), var(--green));
+            color: var(--white);
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            opacity: 0.12;
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 2.7rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+        }
+
+        /* ===== SECTION TITLES ===== */
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--dark-blue);
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 0.6rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-blue), var(--green));
+            border-radius: 2px;
+        }
+
+        /* ===== FEATURES SECTION ===== */
+        .features {
+            padding: 5rem 0;
+            background: var(--white);
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+        .feature-card {
+            background: var(--light-gray);
+            padding: 2.2rem 1.8rem;
+            border-radius: 14px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border-top: 4px solid;
+            border-image: linear-gradient(to right, var(--primary-blue), var(--green)) 1;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+        .feature-card i {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, var(--primary-blue), var(--green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+        .feature-card h3 {
+            font-size: 1.2rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.7rem;
+        }
+        .feature-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* ===== SERVICES SECTION ===== */
+        .services-overview {
+            padding: 5rem 0;
+            background: var(--light-gray);
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 2.2rem;
+            margin-bottom: 2rem;
+        }
+        .service-item {
+            background: var(--white);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        .service-item:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+        .service-item img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+        .service-item h3 {
+            color: var(--dark-blue);
+            margin: 1.2rem 1.2rem 0.6rem;
+            font-size: 1.15rem;
+        }
+        .service-item p {
+            color: var(--gray);
+            margin: 0 1.2rem 1.8rem;
+            font-size: 0.95rem;
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta {
+            background: linear-gradient(135deg, var(--primary-blue), var(--green));
+            color: var(--white);
+            padding: 4.5rem 0;
+            text-align: center;
+        }
+        .cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        .cta p {
+            font-size: 1.15rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-blue), #1b7267);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-about h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--light-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .footer-about p {
+            opacity: 0.85;
+            line-height: 1.7;
+        }
+        .footer-links h4, .footer-contact h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--light-green);
+        }
+        .footer-links ul li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links a {
+            opacity: 0.85;
+            transition: all 0.3s ease;
+        }
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--light-green);
+            padding-left: 5px;
+        }
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.85;
+            margin-bottom: 0.5rem;
+        }
+        .footer-contact i {
+            color: var(--light-green);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            opacity: 0.75;
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.5rem 0;
+                box-shadow: var(--shadow);
+                display: none;
+            }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 1rem; }
+            .btn { padding: 10px 20px; font-size: 0.9rem; }
+            .btn-secondary { margin-left: 8px; }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-<!-- ✅ LOGO: IMAGE + TEXT SIDE-BY-SIDE -->
+            <!-- ✅ LOGO: IMAGE + TEXT SIDE-BY-SIDE | FIXED & STYLED -->
             <div class="logo">
-                <a href="index.html" style="display: flex; align-items: center; text-decoration: none; gap: 10px;">
-                    <!-- LOGO IMAGE -->
+                <a href="index.html">
                     <img 
                         src="images/logo.png" 
                         alt="Aguarantee Laboratory" 
-                        style="
-                            height: 60px !important; 
-                            width: auto !important; 
-                            max-width: 100px !important; 
-                            object-fit: contain !important; 
-                            background: transparent !important; 
-                            mix-blend-mode: multiply !important;
-                            display: block !important;
-                            vertical-align: middle !important;
-                        "
+                        class="logo-img"
                     >
-            
-                    <!-- COMPANY NAME -->
-                    <div style="display: flex; flex-direction: column; line-height: 1.2;">
-                        <h1 style="
-                            font-size: 1.1rem; 
-                            font-weight: 700; 
-                            color: #222; 
-                            margin: 0; 
-                            padding: 0;
-                            white-space: nowrap;
-                        ">
-                            Aguarantee Laboratory
-                        </h1>
-                        <p style="
-                            font-size: 0.78rem; 
-                            color: #555; 
-                            margin: 0; 
-                            padding: 0;
-                            white-space: nowrap;
-                        ">
-                            Water Testing Services
-                        </p>
+                    <div class="logo-text">
+                        <h1>Aguarantee Laboratory</h1>
+                        <p>Water Testing Services</p>
                     </div>
                 </a>
             </div>
+
+            <!-- ✅ MISSING NAVIGATION LINKS ADDED -->
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
     </nav>
 
     <!-- Hero Section -->
@@ -62,7 +458,7 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Accurate & Reliable Water Testing Services</h1>
-                <p>Ensuring safe, clean, and compliant water quality for homes, businesses, and industries in Midsayap and beyond.</p>
+                <p>Ensuring safe, clean, and compliant water quality for homes, businesses, and industries in Midsayap and surrounding areas.</p>
                 <div class="hero-buttons">
                     <a href="services.html" class="btn btn-primary">Our Services</a>
                     <a href="contact.html" class="btn btn-secondary">Get a Quote</a>
@@ -79,12 +475,12 @@
                 <div class="feature-card">
                     <i class="fas fa-certificate"></i>
                     <h3>Accredited Lab</h3>
-                    <p>Licensed and accredited by the Department of Health for full compliance and valid results.</p>
+                    <p>Licensed and accredited by the Department of Health for full compliance and legally valid results.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-flask"></i>
                     <h3>Advanced Equipment</h3>
-                    <p>State-of-the-art laboratory instruments and reagents for precise detection of contaminants and parameters.</p>
+                    <p>State-of-the-art instruments and reagents for precise detection of contaminants and parameters.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-user-check"></i>
@@ -94,7 +490,7 @@
                 <div class="feature-card">
                     <i class="fas fa-clock"></i>
                     <h3>Fast Turnaround</h3>
-                    <p>Receive your detailed water quality report within the shortest possible time without compromising accuracy.</p>
+                    <p>Receive detailed water quality reports quickly without compromising accuracy or quality.</p>
                 </div>
             </div>
         </div>
@@ -106,17 +502,17 @@
             <h2 class="section-title">Our Core Testing Services</h2>
             <div class="services-grid">
                 <div class="service-item">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Drinking Water Testing">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Drinking Water Testing" loading="lazy">
                     <h3>Drinking Water Analysis</h3>
                     <p>Test for bacteria, chemicals, heavy metals, and physical parameters to ensure safety for consumption.</p>
                 </div>
                 <div class="service-item">
-                    <img src="https://images.unsplash.com/photo-1532635241-17e820acc59f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Wastewater Testing">
+                    <img src="https://images.unsplash.com/photo-1532635241-17e820acc59f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Wastewater Testing" loading="lazy">
                     <h3>Wastewater & Effluent Testing</h3>
-                    <p>Compliance testing for discharge standards to meet environmental regulations.</p>
+                    <p>Compliance testing for discharge standards to meet environmental regulations and safety limits.</p>
                 </div>
                 <div class="service-item">
-                    <img src="https://images.unsplash.com/photo-1563254613-349b163b3888?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Industrial Water">
+                    <img src="https://images.unsplash.com/photo-1563254613-349b163b3888?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Industrial Water" loading="lazy">
                     <h3>Industrial & Process Water</h3>
                     <p>Analysis for manufacturing, cooling systems, and boiler feed water to protect equipment and quality.</p>
                 </div>
@@ -132,7 +528,7 @@
         <div class="container">
             <div class="cta-content">
                 <h2>Need Your Water Tested Today?</h2>
-                <p>Contact us to schedule sampling or drop off your samples at our laboratory in Davao City.</p>
+                <p>Contact us to schedule sampling or drop off your samples at our laboratory in Purok 4, Poblacion 5, Midsayap, Cotabato.</p>
                 <a href="contact.html" class="btn btn-light">Contact Us Now</a>
             </div>
         </div>
@@ -143,9 +539,8 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-about">
-                    
-                    <h3><i class="fas fa-tint"></i> Aguarantee Laboratory Water Testing Services</h3>
-                    <p>Your trusted partner for accurate, reliable, and certified water testing services in Davao City and surrounding areas.</p>
+                    <h3><i class="fas fa-tint"></i> Aguarantee Laboratory</h3>
+                    <p>Your trusted partner for accurate, reliable, and certified water testing services in Midsayap and surrounding areas.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Quick Links</h4>
@@ -159,8 +554,8 @@
                 </div>
                 <div class="footer-contact">
                     <h4>Contact Info</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> Midsayap, Cotabato, Philippines</p>
-                    <p><i class="fas fa-phone"></i> +639109013786</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Purok 4, Poblacion 5, Midsayap, Cotabato, Philippines 9410</p>
+                    <p><i class="fas fa-phone"></i> +63 910 901 3786</p>
                     <p><i class="fas fa-envelope"></i> aguaranteewaterlab@gmail.com</p>
                 </div>
             </div>
