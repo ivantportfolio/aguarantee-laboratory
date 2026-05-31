@@ -7,12 +7,120 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== EXTRA STYLING TO MATCH BLUE + GREEN THEME ===== */
+        .about-content {
+            padding: 4rem 0;
+            background: #f8fbfd;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+        .about-text h2 {
+            font-size: 1.8rem;
+            color: var(--dark-blue);
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-blue), var(--green));
+            border-radius: 2px;
+        }
+        .about-text p {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+        .about-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 119, 182, 0.12);
+            border: 3px solid white;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--dark-blue);
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-blue), var(--green));
+            border-radius: 2px;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+        }
+        .team-member {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 119, 182, 0.08);
+            border-top: 3px solid;
+            border-image: linear-gradient(to right, var(--primary-blue), var(--green)) 1;
+            transition: all 0.3s ease;
+        }
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(42, 157, 143, 0.15);
+        }
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid;
+            border-image: linear-gradient(to right, var(--primary-blue), var(--green)) 1;
+            margin-bottom: 1rem;
+        }
+        .team-member h3 {
+            color: var(--dark-blue);
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+        .team-member p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        .mt-5 {
+            margin-top: 3rem;
+        }
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-<!-- ✅ LOGO: IMAGE + TEXT SIDE-BY-SIDE -->
+            <!-- ✅ LOGO: IMAGE + TEXT SIDE-BY-SIDE | FIXED SIZE & ALIGNMENT -->
             <div class="logo">
                 <a href="index.html" style="display: flex; align-items: center; text-decoration: none; gap: 10px;">
                     <!-- LOGO IMAGE -->
@@ -20,14 +128,13 @@
                         src="images/logo.png" 
                         alt="Aguarantee Laboratory" 
                         style="
-                            height: 60px !important; 
+                            height: 45px !important; 
                             width: auto !important; 
-                            max-width: 100px !important; 
+                            max-width: 110px !important; 
                             object-fit: contain !important; 
                             background: transparent !important; 
                             mix-blend-mode: multiply !important;
                             display: block !important;
-                            vertical-align: middle !important;
                         "
                     >
             
@@ -36,7 +143,10 @@
                         <h1 style="
                             font-size: 1.1rem; 
                             font-weight: 700; 
-                            color: #222; 
+                            background: linear-gradient(135deg, var(--primary-blue), var(--green));
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            background-clip: text;
                             margin: 0; 
                             padding: 0;
                             white-space: nowrap;
@@ -45,7 +155,7 @@
                         </h1>
                         <p style="
                             font-size: 0.78rem; 
-                            color: #555; 
+                            color: var(--gray); 
                             margin: 0; 
                             padding: 0;
                             white-space: nowrap;
@@ -55,6 +165,7 @@
                     </div>
                 </a>
             </div>
+
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html" class="active">About Us</a></li>
@@ -62,6 +173,7 @@
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
+
             <div class="menu-toggle" id="mobile-menu">
                 <i class="fas fa-bars"></i>
             </div>
@@ -84,7 +196,7 @@
                     <h2>Who We Are</h2>
                     <p><strong>Aguarantee Laboratory Water Testing Services</strong> is a premier water quality testing facility based in Midsayap, Cotabato, Philippines. Established with a mission to protect public health and the environment, we provide accurate, reliable, and timely analysis of all types of water — from drinking water and groundwater to wastewater, industrial process water, and recreational water.</p>
                     
-                    <p>We are fully licensed and accredited by the Department of Health (DOH) and currently appying for the Environmental Management Bureau (EMB) accreditation. Our laboratory operates under strict quality management systems to ensure every result we deliver is precise, valid, and legally acceptable for compliance purposes.</p>
+                    <p>We are fully licensed and accredited by the Department of Health (DOH) and currently applying for the Environmental Management Bureau (EMB) accreditation. Our laboratory operates under strict quality management systems to ensure every result we deliver is precise, valid, and legally acceptable for compliance purposes.</p>
 
                     <h2>Our Mission</h2>
                     <p>To deliver high-quality, affordable, and accessible water testing services that help individuals, businesses, and government agencies ensure water is safe, compliant, and fit for its intended use.</p>
@@ -93,7 +205,7 @@
                     <p>To be the most trusted and respected water testing laboratory in Mindanao, recognized for excellence, integrity, and contribution to a healthier, safer community.</p>
                 </div>
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Our Laboratory">
+                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Our Laboratory Facility" loading="lazy">
                 </div>
             </div>
 
@@ -101,17 +213,17 @@
                 <h2 class="section-title">Our Expert Team</h2>
                 <div class="team-grid">
                     <div class="team-member">
-                        <img src="https://images.unsplash.com/photo-1556157384-52f1b3100c47?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Chief Chemist">
+                        <img src="https://images.unsplash.com/photo-1556157384-52f1b3100c47?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Dr. Elena Cruz" loading="lazy">
                         <h3>Dr. Elena Cruz</h3>
                         <p>Chief Chemist / Laboratory Director</p>
                     </div>
                     <div class="team-member">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Microbiologist">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Engr. Mark Reyes" loading="lazy">
                         <h3>Engr. Mark Reyes</h3>
                         <p>Senior Microbiologist</p>
                     </div>
                     <div class="team-member">
-                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Quality Control">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Ms. Sarah Lim" loading="lazy">
                         <h3>Ms. Sarah Lim</h3>
                         <p>Quality Control Officer</p>
                     </div>
@@ -125,14 +237,14 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-about">
-                    <h3><i class="fas fa-tint"></i> Aguarantee Laboratory Water Testing Servives</h3>
+                    <h3><i class="fas fa-tint"></i> Aguarantee Laboratory Water Testing Services</h3>
                     <p>Your trusted partner for accurate, reliable, and certified water testing services in Midsayap and surrounding areas.</p>
                 </div>
                 <div class="footer-links">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="about.html" class="active">About Us</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="gallery.html">Gallery</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -140,8 +252,8 @@
                 </div>
                 <div class="footer-contact">
                     <h4>Contact Info</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> Midsayap, Cotabato, Philippines</p>
-                    <p><i class="fas fa-phone"></i> +639109013786</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Purok 4, Poblacion 5, Midsayap, Cotabato, Philippines 9410</p>
+                    <p><i class="fas fa-phone"></i> +63 910 901 3786</p>
                     <p><i class="fas fa-envelope"></i> aguaranteewaterlab@gmail.com</p>
                 </div>
             </div>
