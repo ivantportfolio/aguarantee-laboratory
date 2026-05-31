@@ -501,7 +501,7 @@ img {
 
 /* ✅ LOGO IMAGE SIZE — ADJUSTED */
 .logo-img {
-    height: 10px !important;  /* ✅ PERFECT SIZE — change to 35px–50px if needed */
+    height: 20px !important;  /* ✅ PERFECT SIZE — change to 35px–50px if needed */
     width: auto !important;
     max-width: 110px !important; /* Prevent too wide */
     object-fit: contain !important;
@@ -535,7 +535,7 @@ img {
 /* ✅ MOBILE: Still side-by-side, just smaller */
 @media (max-width: 768px) {
     .logo-img {
-        height: 36px !important;
+        height: 20px !important;
         max-width: 90px !important;
     }
     .logo-text h1 {
