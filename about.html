@@ -12,19 +12,49 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-              <div class="logo">
-                   <div class="logo">
-                    <a href="index.html" class="logo-link">
-                        <!-- Logo Image ON THE LEFT -->
-                        <img src="images/logo.png" alt="Aguarantee Laboratory Water Testing Services" class="logo-img">
-                        
-                        <!-- Company Name & Tagline ON THE RIGHT (beside logo) -->
-                        <div class="logo-text">
-                            <h1>Aguarantee Laboratory</h1>
-                            <p>Water Testing Services</p>
-                        </div>
-                    </a>
-                </div>
+<!-- ✅ LOGO: IMAGE + TEXT SIDE-BY-SIDE -->
+            <div class="logo">
+                <a href="index.html" style="display: flex; align-items: center; text-decoration: none; gap: 10px;">
+                    <!-- LOGO IMAGE -->
+                    <img 
+                        src="images/logo.png" 
+                        alt="Aguarantee Laboratory" 
+                        style="
+                            height: 40px !important; 
+                            width: auto !important; 
+                            max-width: 100px !important; 
+                            object-fit: contain !important; 
+                            background: transparent !important; 
+                            mix-blend-mode: multiply !important;
+                            display: block !important;
+                            vertical-align: middle !important;
+                        "
+                    >
+            
+                    <!-- COMPANY NAME -->
+                    <div style="display: flex; flex-direction: column; line-height: 1.2;">
+                        <h1 style="
+                            font-size: 1.1rem; 
+                            font-weight: 700; 
+                            color: #222; 
+                            margin: 0; 
+                            padding: 0;
+                            white-space: nowrap;
+                        ">
+                            Aguarantee Laboratory
+                        </h1>
+                        <p style="
+                            font-size: 0.78rem; 
+                            color: #555; 
+                            margin: 0; 
+                            padding: 0;
+                            white-space: nowrap;
+                        ">
+                            Water Testing Services
+                        </p>
+                    </div>
+                </a>
+            </div>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html" class="active">About Us</a></li>
