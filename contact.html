@@ -8,20 +8,427 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Extra map styling to match your theme */
+        /* ===== GLOBAL VARIABLES - BLUE + GREEN THEME ===== */
+        :root {
+            --primary-blue: #0077B6;
+            --light-blue: #00B4D8;
+            --dark-blue: #023E8A;
+            --green: #2A9D8F;
+            --light-green: #4CC9F0;
+            --pale-green: #E6F9F5;
+            --white: #ffffff;
+            --light-gray: #f8fbfd;
+            --gray: #64748b;
+            --dark-gray: #334155;
+            --shadow: 0 4px 15px rgba(0, 119, 182, 0.08);
+            --shadow-hover: 0 8px 20px rgba(42, 157, 143, 0.15);
+        }
+
+        /* ===== GLOBAL RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.6;
+            background-color: var(--light-gray);
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-blue), var(--green));
+            color: var(--white);
+            box-shadow: 0 4px 12px rgba(0, 119, 182, 0.2);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0, 119, 182, 0.25);
+        }
+        .w-100 { width: 100%; }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            padding: 1rem 0;
+        }
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* ✅ LOGO: PERFECT SIDE-BY-SIDE LAYOUT */
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .logo-img {
+            height: 45px !important;
+            width: auto !important;
+            max-width: 110px !important;
+            object-fit: contain !important;
+            background: transparent !important;
+            mix-blend-mode: multiply !important;
+            display: block !important;
+        }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+        .logo-text h1 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-blue), var(--green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 0;
+            white-space: nowrap;
+        }
+        .logo-text p {
+            font-size: 0.78rem;
+            color: var(--gray);
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        .nav-links a {
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+            color: var(--dark-gray);
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--green);
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary-blue), var(--green));
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--green));
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact-content {
+            padding: 4rem 0;
+            background: var(--light-gray);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        /* Contact Info */
+        .contact-info h2 {
+            font-size: 1.8rem;
+            color: var(--dark-blue);
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .contact-info h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-blue), var(--green));
+            border-radius: 2px;
+        }
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1.2rem;
+            border-radius: 12px;
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        .info-item:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-hover);
+        }
+        .info-item i {
+            font-size: 1.3rem;
+            color: var(--green);
+            margin-top: 0.2rem;
+        }
+        .info-item h4 {
+            font-size: 1rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.2rem;
+        }
+        .info-item p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--green));
+            color: var(--white);
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0, 119, 182, 0.25);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 14px;
+            box-shadow: var(--shadow-hover);
+            border-top: 4px solid;
+            border-image: linear-gradient(to right, var(--primary-blue), var(--green)) 1;
+        }
+        .contact-form h2 {
+            font-size: 1.8rem;
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .contact-form h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-blue), var(--green));
+            border-radius: 2px;
+        }
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark-gray);
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #fcfefe;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--light-blue);
+            box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.1);
+            background-color: var(--white);
+        }
+
+        /* ===== MAP SECTION ===== */
         .map-container {
             margin: 4rem 0;
         }
+        .map-container h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: var(--dark-blue);
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.6rem;
+        }
+        .map-container h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-blue), var(--green));
+            border-radius: 2px;
+        }
         .map-wrapper {
-            border-radius: 10px;
+            border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-hover);
             height: 450px;
+            border: 4px solid var(--white);
         }
         .map-wrapper iframe {
             width: 100%;
             height: 100%;
             border: 0;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: linear-gradient(135deg, var(--dark-blue), #1b7267);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .footer-about h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--light-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .footer-about p {
+            opacity: 0.85;
+            line-height: 1.7;
+        }
+        .footer-links h4, .footer-contact h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--light-green);
+        }
+        .footer-links ul li {
+            margin-bottom: 0.5rem;
+        }
+        .footer-links a {
+            opacity: 0.85;
+            transition: all 0.3s ease;
+        }
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--light-green);
+            padding-left: 5px;
+        }
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.85;
+            margin-bottom: 0.5rem;
+        }
+        .footer-contact i {
+            color: var(--light-green);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            opacity: 0.75;
+            font-size: 0.9rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.5rem 0;
+                box-shadow: var(--shadow);
+                display: none;
+            }
+            .nav-links.active { display: flex; }
+            .menu-toggle { display: block; }
+            .page-header h1 { font-size: 1.8rem; }
+            .map-wrapper { height: 300px; }
         }
     </style>
 </head>
@@ -29,49 +436,21 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-<!-- ✅ LOGO: IMAGE + TEXT SIDE-BY-SIDE -->
+            <!-- ✅ LOGO: IMAGE + TEXT SIDE-BY-SIDE | PERFECT -->
             <div class="logo">
-                <a href="index.html" style="display: flex; align-items: center; text-decoration: none; gap: 10px;">
-                    <!-- LOGO IMAGE -->
+                <a href="index.html">
                     <img 
                         src="images/logo.png" 
                         alt="Aguarantee Laboratory" 
-                        style="
-                            height: 60px !important; 
-                            width: auto !important; 
-                            max-width: 100px !important; 
-                            object-fit: contain !important; 
-                            background: transparent !important; 
-                            mix-blend-mode: multiply !important;
-                            display: block !important;
-                            vertical-align: middle !important;
-                        "
+                        class="logo-img"
                     >
-            
-                    <!-- COMPANY NAME -->
-                    <div style="display: flex; flex-direction: column; line-height: 1.2;">
-                        <h1 style="
-                            font-size: 1.1rem; 
-                            font-weight: 700; 
-                            color: #222; 
-                            margin: 0; 
-                            padding: 0;
-                            white-space: nowrap;
-                        ">
-                            Aguarantee Laboratory
-                        </h1>
-                        <p style="
-                            font-size: 0.78rem; 
-                            color: #555; 
-                            margin: 0; 
-                            padding: 0;
-                            white-space: nowrap;
-                        ">
-                            Water Testing Services
-                        </p>
+                    <div class="logo-text">
+                        <h1>Aguarantee Laboratory</h1>
+                        <p>Water Testing Services</p>
                     </div>
                 </a>
             </div>
+
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
@@ -79,6 +458,7 @@
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
+
             <div class="menu-toggle" id="mobile-menu">
                 <i class="fas fa-bars"></i>
             </div>
@@ -246,7 +626,7 @@
                 </div>
                 <div class="footer-contact">
                     <h4>Contact Info</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> Midsayap, Cotabato, Philippines</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Purok 4, Poblacion 5, Midsayap, Cotabato, Philippines 9410</p>
                     <p><i class="fas fa-phone"></i> +63 910 901 3786</p>
                     <p><i class="fas fa-envelope"></i> aguaranteewaterlab@gmail.com</p>
                 </div>
